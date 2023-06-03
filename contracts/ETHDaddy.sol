@@ -43,7 +43,6 @@ contract ETHDaddy is ERC721 {
         return domains[_id];
     }
     function mint (uint256 _id) public payable {
-        if(_id = 0 ) revert NotValidID();
         if(domains[_id].isOwned) revert DomainIsOwned();
         if(msg.value < domains[_id].cost) revert NotEnoughFunds();
         _safeMint(msg.sender, _id);

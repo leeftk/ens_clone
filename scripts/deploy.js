@@ -12,6 +12,16 @@ const tokens = (n) => {
 
 async function main() {
 
+  const [deployer] = await ethers.getSigners();
+  const ETHDaddy = await ethers.getContractFactory("ETHDaddy");
+  const ethDaddy = await ETHDaddy.deploy("ETHDaddy", "ETHD");
+  await ethDaddy.deployed();
+  console.log("ETHDaddy deployed to:", ethDaddy.address);  
+  const transaction = await ethDaddy.connect(deployer).list("test.eth", tokens(10));
+  await transaction.wait();
+
+
+
 }
 
 main().catch((error) => {
