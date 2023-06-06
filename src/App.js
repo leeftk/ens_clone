@@ -22,6 +22,7 @@ function App() {
     const provider = new ethers.providers.Web3Provider(window.ethereum)
     setProvider(provider)
     const network = await provider.getNetwork() 
+
     const ethDaddy =  new ethers.Contract(config[network.chainId].ETHDaddy.address, ETHDaddy, provider)
    setEthDaddy(ethDaddy)
     const maxSupply = await ethDaddy.maxSupply()
@@ -55,7 +56,6 @@ function App() {
       <Search />
 
       <div className='cards__section'>
-
        <h2 className='cards__title'>Why you need a domain name.</h2>
        <p className="cards__descriotion">
         Use you custom user name to transaction on the Ethereum network. <br/> Ethereum names work across multiple dapps!</p>
@@ -65,7 +65,7 @@ function App() {
 
       <div className='cards'>
         {domains.map((domain, index)=> (
-          <Domain domain={domain} ethDaddy={ethDaddy} provider={provider} id={index} key={index}/>
+          <Domain domain={domain} ethDaddy={ethDaddy} provider={provider} id={index + 1} key={index}/>
 
         ))}
           
