@@ -1,7 +1,13 @@
 {
     "31337": {
         "ETHDaddy": {
-            "address": "0x5FbDB2315678afecb367f032d93F642f64180aa3"
+            "address": "0x9A9f2CCfdE556A7E9Ff0848998Aa4a0CFD8863AE"
+        }
+    },
+    "11155111": {
+        "ETHDaddy": {
+            "address": "0x63182d5DE1Cdde0e77b25E757e281b6E5e6103BC"
         }
     }
+    
 }

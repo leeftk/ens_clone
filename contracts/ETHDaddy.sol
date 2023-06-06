@@ -11,7 +11,7 @@ error DomainIsOwned();
 error NotValidID();
 
 contract ETHDaddy is ERC721 {
-    uint256 public totalDomains;
+    uint256 public maxSupply;
     address public owner;
     address totalSupply;
 
@@ -30,12 +30,8 @@ contract ETHDaddy is ERC721 {
 
     function list(string memory _name, uint256 _cost) public {
         if(msg.sender != owner) revert NotOwner();
-        totalDomains++;
-        //model domain
-        domains[totalDomains] = Domain(_name, _cost, false);
-
-        //save domain
-        //update total domain count
+        maxSupply++;
+        domains[maxSupply] = Domain(_name, _cost, false);
 
     }
 
@@ -45,10 +41,11 @@ contract ETHDaddy is ERC721 {
     function mint (uint256 _id) public payable {
         if(domains[_id].isOwned) revert DomainIsOwned();
         if(msg.value < domains[_id].cost) revert NotEnoughFunds();
+        domains[_id].isOwned = true;   
         _safeMint(msg.sender, _id);
-        domains[_id].isOwned = true;    
+        
+         
     }
-    // function buyDomain()
     function getBalance() public view returns (uint256) {
         return address(this).balance;
     }

@@ -105,7 +105,7 @@ header {
   background-size: contain;
   background-position: right;
   background-repeat: no-repeat;
-  background-color: var(--clr-grey);
+  background-color: ;
   min-height: 50vh;
 
   position: relative;
@@ -144,7 +144,8 @@ header {
   height: 60px;
   padding: 0 20px;
   min-width: 30%;
-  border: none;
+  border: 1px solid var(--clr-black);
+
 }
 
 .header__button {
@@ -172,6 +173,7 @@ header {
   font-family: "Open Sans";
   font-size: 1.25em;
   font-weight: 600;
+ 
 }
 
 /* ------------------------------------------------------ */

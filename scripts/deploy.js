@@ -16,12 +16,20 @@ async function main() {
   const ETHDaddy = await ethers.getContractFactory("ETHDaddy");
   const ethDaddy = await ETHDaddy.deploy("ETHDaddy", "ETHD");
   await ethDaddy.deployed();
+
   console.log("ETHDaddy deployed to:", ethDaddy.address);  
-  const transaction = await ethDaddy.connect(deployer).list("test.eth", tokens(10));
-  await transaction.wait();
+  // List 6 domains
+  const names = ["jack.eth", "maria.eth", "henry.eth","santa.eth"]
+  const costs = [tokens(.01), tokens(.01), tokens(.025),tokens(.5)]
+
+  for (var i = 0; i < 6; i++) {
+    const transaction = await ethDaddy.connect(deployer).list(names[i], costs[i])
+    await transaction.wait()
+
+    console.log(`Listed Domain ${i + 1}: ${names[i]}`)
 
 
-
+}
 }
 
 main().catch((error) => {
